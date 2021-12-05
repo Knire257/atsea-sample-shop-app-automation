@@ -6,6 +6,7 @@ import * as chai from 'chai';
 const expect = chai.expect;
 
 describe('Customer tests', () => {
+    let customerTestId;
     it('Create customer', async () => {
         const response = await ajax.post('http://localhost:8080/api/customer/')
             .send({
@@ -21,16 +22,21 @@ describe('Customer tests', () => {
             })
             .set('Content-type','application/json')
             .set('Accept','application/json');
+
         expect(response.status).to.equal(StatusCodes.CREATED);
+        expect(response.body).to.have.property('customerId');
+        customerTestId = response.body.customerId;
     });
     
     it('Get customer by Id', async () => {
-        const id = 1;   
+        const id = customerTestId;   
         const response = await get('http://localhost:8080/api/customer/'+id)
             .set('Content-type','application/json')
             .set('Accept','application/json');
         expect(response.status).to.equal(StatusCodes.OK);
         expect(response.body).to.have.property('customerIf');   //this is misspelled in the API
+        expect(response.body).to.have.property('name');
+        expect(response.body).to.have.property('username');
     });
     
     it('Get customer by name', async () => {
@@ -44,6 +50,7 @@ describe('Customer tests', () => {
             .set('Accept','application/json');
         expect(response.status).to.equal(StatusCodes.OK);
         expect(response.body).to.have.property('username');
+        expect(response.body).to.have.property('customerIf');
     });
 
     it('Update customer', async () => {
@@ -51,7 +58,7 @@ describe('Customer tests', () => {
     });
 
     it('Delete customer by Id', async () => {
-        const id = 1;
+        const id = customerTestId;
         const response = await ajax.del('http://localhost:8080/api/customer/'+id)
             .set('Content-type','application/json')
             .set('Accept','application/json');
