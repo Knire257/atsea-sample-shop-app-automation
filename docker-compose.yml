@@ -1,7 +1,32 @@
 version: 3.9
 
-RUN |
-  docker network create grid
-  docker run -d -p 4444:4444 --net grid --name selenium-hub selenium/hub:3.141.59-20210929
-  docker run -d --net grid -e HUB_HOST=selenium-hub -v /dev/shm:/dev/shm selenium/node-chrome:3.141.59-20210929
-  docker run -d --net grid -e HUB_HOST=selenium-hub -v /dev/shm:/dev/shm selenium/node-firefox:3.141.59-20210929
+##RUN |
+##  docker network create grid
+##  docker run -d -p 4444:4444 --net grid --name selenium-hub selenium/hub:3.141.59-20210929
+##  docker run -d --net grid -e HUB_HOST=selenium-hub -v /dev/shm:/dev/shm selenium/node-chrome:3.141.59-20210929
+##  docker run -d --net grid -e HUB_HOST=selenium-hub -v /dev/shm:/dev/shm selenium/node-firefox:3.141.59-20210929
+
+networks:
+  grid:
+  dirver: bridge
+
+services:
+  selenium-hub:
+    container_name: selenium-hub
+    image: selenium/hub:3.141.59-20210929
+    ports:
+      - 4444:4444
+  
+  chrome:
+    image: selenium/node-chrome:3.141.59-20210929
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+  
+  firefox:
+    image: selenium/node-firefox:3.141.59-20210929
+    volumes: 
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
