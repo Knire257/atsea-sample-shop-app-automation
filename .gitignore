@@ -155,3 +155,4 @@ dist
 
 #mochawesome-reports folder
 .mochawesome-report/
+.mochawesome-reports/
