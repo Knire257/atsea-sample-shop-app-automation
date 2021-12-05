@@ -14,6 +14,7 @@ describe('System utilities Tests', () => {
             .set('Content-type','application/json')
             .set('Accept','application/json');
         expect(response.status).to.equal(StatusCodes.OK);
+        expect(response.body).to.have.property('host');
         expect(response.body).to.have.property('ip');
     });
 });
