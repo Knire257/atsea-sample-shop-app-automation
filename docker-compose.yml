@@ -12,6 +12,8 @@ services:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   firefox:
     image: selenium/node-firefox:4.1.0-20211123
@@ -23,6 +25,8 @@ services:
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_GRID_URL=http://localhost:4444
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   selenium-hub:
     image: selenium/hub:4.1.0-20211123
@@ -31,3 +35,5 @@ services:
       - "4442:4442"
       - "4443:4443"
       - "4444:4444"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
