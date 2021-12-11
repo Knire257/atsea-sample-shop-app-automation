@@ -6,14 +6,26 @@ export class SignInFormModalPage {
     private btnSubmitUserData: ElementFinder;
 
     constructor() {
-        this.userUsername = $('#username-Username-undefined-63820');
-        this.userPassword = $('#password-Password-undefined-29962');
+        this.userUsername = $("input[name=username]");
+        this.userPassword = $("input[name=password]");
         this.btnSubmitUserData = $('.loginFormButton > button');
     }
-
-    public async sendUserData(email: string, password: string) {
+    public getUsernameField(): ElementFinder {
+        return this.userUsername;
+    }
+    public getPasswordField(): ElementFinder {
+        return this.userPassword;
+    }
+    public getBtnSubmitUserData(): ElementFinder {
+        return this.btnSubmitUserData;
+    }
+    public async fillUsernameField(email: string) {
         await this.userUsername.sendKeys(email);
+    }
+    public async fillPasswordField(password: string) {
         await this.userPassword.sendKeys(password);
+    }
+    public async submitUserData() {
         await this.btnSubmitUserData.click();
     }
 }

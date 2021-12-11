@@ -6,9 +6,9 @@ const firefoxConfig = {
     name: 'firefox-tests',
     shardTestFiles: true,
     maxInstances: 1,
-    'moz:firefoxOptions': {
-        args: ['--headless', '--window-size=1920,1080']
-    }
+   // 'moz:firefoxOptions': {
+    //    args: ['--headless', '--window-size=1920,1080']
+  //  }
 };
 
 const chromeConfig = {
@@ -16,9 +16,9 @@ const chromeConfig = {
     name: 'chrome-tests',
     shardTestFiles: true,
     maxInstances: 1,
-    'chromeOptions': {
-        args: ['--headless', '--window-size=1920,1080']
-    }
+   // 'chromeOptions': {
+   //     args: ['--headless', '--window-size=1920,1080']
+   // }
 };
 
 export const config: Config = {

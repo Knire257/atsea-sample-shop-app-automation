@@ -1,7 +1,7 @@
 const agent = require('superagent');
 const StatusCodes = require('http-status-codes');
 const chai1 = require('chai');
-const expect = chai1.expect;
+
 
 describe("Customer tests", () => {
   let customerTestId;
@@ -22,8 +22,8 @@ describe("Customer tests", () => {
       .set("Content-type", "application/json")
       .set("Accept", "application/json");
 
-    expect(response.status).to.equal(StatusCodes.CREATED);
-    expect(response.body).to.have.property("customerId");
+    chai1.expectexpect(response.status).to.equal(StatusCodes.CREATED);
+    chai1.expectexpect(response.body).to.have.property("customerId");
     customerTestId = response.body.customerId; ///User Id
     customerName = response.body.name; ///User Name
   });
@@ -33,10 +33,10 @@ describe("Customer tests", () => {
     const response = await agent.get("http://localhost:8080/api/customer/" + id)
       .set("Content-type", "application/json")
       .set("Accept", "application/json");
-    expect(response.status).to.equal(StatusCodes.OK);
-    expect(response.body).to.have.property("customerIf"); //this is misspelled in the API
-    expect(response.body).to.have.property("name");
-    expect(response.body).to.have.property("username");
+    chai1.expect(response.status).to.equal(StatusCodes.OK);
+    chai1.expect(response.body).to.have.property("customerIf"); //this is misspelled in the API
+    chai1.expect(response.body).to.have.property("name");
+    chai1.expect(response.body).to.have.property("username");
   });
 
   it("Get customer by name", async () => {
@@ -47,9 +47,9 @@ describe("Customer tests", () => {
         .set("User-Agent", "agent") /// borrar maybe(?)
         .set("Content-Type", "application/json")
         .set("Accept", "application/json");
-      expect(response.status).to.equal(StatusCodes.OK);
-      expect(response.body).to.have.property("name");
-      expect(response.body.name).to.equal(customerName);
+      chai1.expect(response.status).to.equal(StatusCodes.OK);
+      chai1.expect(response.body).to.have.property("name");
+      chai1.expect(response.body.name).to.equal(customerName);
     });
   });
 
@@ -60,9 +60,9 @@ describe("Customer tests", () => {
     )
       .set("Content-type", "application/json")
       .set("Accept", "application/json");
-    expect(response.status).to.equal(StatusCodes.OK);
-    expect(response.body).to.have.property("username");
-    expect(response.body).to.have.property("customerIf");
+    chai1.expect(response.status).to.equal(StatusCodes.OK);
+    chai1.expect(response.body).to.have.property("username");
+    chai1.expect(response.body).to.have.property("customerIf");
   });
 
   it("Update customer", async () => {
@@ -85,13 +85,13 @@ describe("Customer tests", () => {
         .set("Content-type", "application/json")
         .set("Accept", "application/json")
         .send(customer);
-      expect(response.status).to.equal(StatusCodes.OK);
-      expect(response.body).to.have.property("customerId");
-      expect(response.body.address).to.equal(customer.address);
-      expect(response.body.address).to.equal(customer.email);
-      expect(response.body.phone).to.equal(customer.phone);
-      expect(response.body.address).to.equal(customer.username);
-      expect(response.body.password).to.equal(customer.password);
+      chai1.expect(response.status).to.equal(StatusCodes.OK);
+      chai1.expect(response.body).to.have.property("customerId");
+      chai1.expect(response.body.address).to.equal(customer.address);
+      chai1.expect(response.body.address).to.equal(customer.email);
+      chai1.expect(response.body.phone).to.equal(customer.phone);
+      chai1.expect(response.body.address).to.equal(customer.username);
+      chai1.expect(response.body.password).to.equal(customer.password);
     });
   });
 
@@ -100,13 +100,13 @@ describe("Customer tests", () => {
     const response = await agent.del("http://localhost:8080/api/customer/" + id) ///Por que no sirve del (?)
       .set("Content-type", "application/json")
       .set("Accept", "application/json");
-    expect(response.status).to.equal(StatusCodes.NO_CONTENT);
+    chai1.expect(response.status).to.equal(StatusCodes.NO_CONTENT);
   });
 
   it("Delete all customers in system", async () => {
     const response = await agent.del(`http://localhost:8080/api/customer/`)
       .set("User-Agent", "agent")
       .set("Content-Type", "application/json");
-    expect(response.status).to.equal(StatusCodes.NO_CONTENT);
+    chai1.expect(response.status).to.equal(StatusCodes.NO_CONTENT);
   });
 });

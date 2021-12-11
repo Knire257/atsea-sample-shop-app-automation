@@ -5,8 +5,8 @@ describe("Login And Purchase", () => {
   const StatusCodes = require('http-status-codes');
   const chai1 = require('chai');
   const expect = chai1.expect;
-  let customerTestId;
-  let customerName;
+  //let customerTestId;
+  //let customerName;
   it("Create customer", async () => {
     const response = await agent.post("http://localhost:8080/api/customer/")
       .send({
@@ -25,8 +25,8 @@ describe("Login And Purchase", () => {
 
     expect(response.status).to.equal(StatusCodes.CREATED);
     expect(response.body).to.have.property("customerId");
-    customerTestId = response.body.customerId; ///User Id
-    customerName = response.body.name; ///User Name
+    //customerTestId = response.body.customerId; ///User Id
+    //customerName = response.body.name; ///User Name
   });
 
   let token;
