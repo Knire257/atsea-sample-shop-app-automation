@@ -2,14 +2,13 @@ const agent = require('superagent');
 const StatusCodes = require('http-status-codes');
 const chai1 = require('chai');
 
-
 describe("Customer tests", () => {
   let customerTestId;
   let customerName;
   it("Create customer", async () => {
     const response = await agent.post("http://localhost:8080/api/customer/")
       .send({
-        customerId: 1,
+        customerId: 0,
         name: "Sally Vallery",
         address: "144 Townsend, San Francisco 99999",
         email: "sally@example.com",
@@ -22,10 +21,10 @@ describe("Customer tests", () => {
       .set("Content-type", "application/json")
       .set("Accept", "application/json");
 
-    chai1.expectexpect(response.status).to.equal(StatusCodes.CREATED);
-    chai1.expectexpect(response.body).to.have.property("customerId");
-    customerTestId = response.body.customerId; ///User Id
-    customerName = response.body.name; ///User Name
+    chai1.expect(response.status).to.equal(StatusCodes.CREATED);
+    chai1.expect(response.body).to.have.property("customerId");
+    customerTestId = response.body.customerId; 
+    customerName = response.body.name;
   });
 
   it("Get customer by Id", async () => {
@@ -34,7 +33,7 @@ describe("Customer tests", () => {
       .set("Content-type", "application/json")
       .set("Accept", "application/json");
     chai1.expect(response.status).to.equal(StatusCodes.OK);
-    chai1.expect(response.body).to.have.property("customerIf"); //this is misspelled in the API
+    chai1.expect(response.body).to.have.property("customerIf"); 
     chai1.expect(response.body).to.have.property("name");
     chai1.expect(response.body).to.have.property("username");
   });
@@ -44,7 +43,7 @@ describe("Customer tests", () => {
       const response = await agent.get(
         "http://localhost:8080/api/customer/username=" + customerName
       )
-        .set("User-Agent", "agent") /// borrar maybe(?)
+        .set("User-Agent", "agent") 
         .set("Content-Type", "application/json")
         .set("Accept", "application/json");
       chai1.expect(response.status).to.equal(StatusCodes.OK);
@@ -54,7 +53,7 @@ describe("Customer tests", () => {
   });
 
   it("Get Customer by Username", async () => {
-    const username = "sallyv"; /////Username
+    const username = "sallyv"; 
     const response = await agent.get(
       "http://localhost:8080/api/customer/username=" + username
     )
@@ -96,8 +95,8 @@ describe("Customer tests", () => {
   });
 
   it("Delete customer by Id", async () => {
-    const id = customerTestId; // Deberiamos cambiar esto
-    const response = await agent.del("http://localhost:8080/api/customer/" + id) ///Por que no sirve del (?)
+    const id = customerTestId; 
+    const response = await agent.del("http://localhost:8080/api/customer/" + id) 
       .set("Content-type", "application/json")
       .set("Accept", "application/json");
     chai1.expect(response.status).to.equal(StatusCodes.NO_CONTENT);
