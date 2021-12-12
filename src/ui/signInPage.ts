@@ -4,11 +4,13 @@ export class SignInFormModalPage {
     private userUsername: ElementFinder;
     private userPassword: ElementFinder;
     private btnSubmitUserData: ElementFinder;
+    private signInUserForm: ElementFinder;
 
     constructor() {
         this.userUsername = $("input[name=username]");
         this.userPassword = $("input[name=password]");
-        this.btnSubmitUserData = $('.loginFormButton > button');
+        this.btnSubmitUserData = $('form button');
+        this.signInUserForm = $('.formContainer');
     }
     public getUsernameField(): ElementFinder {
         return this.userUsername;
@@ -27,5 +29,8 @@ export class SignInFormModalPage {
     }
     public async submitUserData() {
         await this.btnSubmitUserData.click();
+    }
+    public getCreateUserForm(): ElementFinder {
+        return this.signInUserForm;
     }
 }

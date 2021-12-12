@@ -13,12 +13,12 @@ export class MainPage {
 
     constructor() {
         this.btnCreateUser = $('.buttonSection button:nth-child(1)');
-        this.pageTitle = $('.headerTitle').innerHTML;
-        this.welcomeMessage = $(".welcomeMessage").innerHTML;
+        this.pageTitle = $('.headerTitle');
+        this.welcomeMessage = $(".welcomeMessage");
         this.btnSignIn = $('.buttonSection button:nth-child(2)');
         this.signInForm = $('.loginFormContent');
-        this.addProductBtn = $('.tileAdd > button');
-        this.checkoutBtn = $('.checkout-button > a');
+        this.addProductBtn = $('.tileAdd button:nth-child(1)');
+        this.checkoutBtn = $('.checkout-button a');
         this.btnSignOut = $('.navUser button');
     }
 
@@ -52,7 +52,7 @@ export class MainPage {
     public getCheckoutBtn (): ElementFinder{
         return this.checkoutBtn;
     }
-    public async ClickCheckoutBtn (){
+    public async clickCheckoutBtn (){
         await this.checkoutBtn.click();
     }
     public getBtnSignOut (){
