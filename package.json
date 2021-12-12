@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "automation part of the final work",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "clean": "rm -rf dist && rm -rf mochawesome-report",
+    "clean": "rm -rf dist && rm -rf mochawesome-report && rm -rf mochawesome-reports",
     "build": "npm run clean && tsc",
-    "test:api": "npm run build && mocha -t 5000 --reporter mochawesome --recursive ./test/api/*.js"
+    "test:api": "npm run build && mocha -t 5000 --reporter mochawesome --recursive ./test/api/*.ts",
+    "test:ui": "npm run build && protractor dist/protractor/local.config.js" 
   },
   "repository": {
     "type": "git",
@@ -26,13 +26,19 @@
   "homepage": "https://github.com/Knire257/atsea-sample-shop-app-automation#readme",
   "dependencies": {
     "@types/chai": "^4.2.22",
-    "@types/mocha": "^9.0.0",
     "@types/superagent": "^4.1.13",
     "chai": "^4.3.4",
     "http-status-codes": "^2.1.4",
     "mocha": "^9.1.3",
     "mochawesome": "^7.0.1",
-    "superagent": "^6.1.0",
-    "typescript": "^4.5.2"
+    "mochawesome-screenshots": "^1.7.0",
+    "selenium-webdriver": "^4.1.0",
+    "superagent": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/jasminewd2": "^2.0.10",
+    "@types/node": "^16.11.12",
+    "protractor": "^7.0.0",
+    "typescript": "^4.5.3"
   }
 }
