@@ -13,14 +13,14 @@ describe('When buying an item', () => {
     describe('Before buying an item', ()=> {
 
         it("first, it should delete all users to avoid possible problems", (function (done) {
-            superagent.del('http://localhost:8080/api/customer/')
+            superagent.del('http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/')
                 .set("User-Agent", "agent")
                 .set("Content-Type", "application/json")
                 .end(done)
         }));
 
         it("then, the API should create an user to be able to complete the purchase", (function (done) {
-            superagent.post('http://localhost:8080/api/customer/')
+            superagent.post('http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/')
                 .set("User-Agent", "agent")
                 .set("Content-Type", "application/json")
                 .send({
@@ -38,7 +38,7 @@ describe('When buying an item', () => {
         }));
 
         it ('it should get the page', async () => {
-            await browser.get('http://host.docker.internal:8080');
+            await browser.get('http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/');
             expect(await browser.getTitle()).to.equal('Atsea Shop');
         });
         it('then it should log in an user', async () => {
@@ -52,7 +52,8 @@ describe('When buying an item', () => {
             await browser.wait(expectedConditions.elementToBeClickable(signInFormModalPage.getBtnSubmitUserData()), 3000)
             await signInFormModalPage.submitUserData();
             await browser.wait(expectedConditions.presenceOf(mainPage.getWelcomeMessage()));
-            //expect(mainPage.getWelcomeMessage()).toEqual('Welcome!');
+            
+            expect(mainPage.getWelcomeMessage().getText()).to.equal('Welcome!');
             
         })
         it('then it should add an item to the cart and proceed to checkout', async() => {

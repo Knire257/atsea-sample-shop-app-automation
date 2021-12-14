@@ -10,13 +10,13 @@ describe('before buying an item', () => {
     const mainPage = new MainPage();
 
     it("first, it should delete all users to avoid possible problems", (function (done) {
-        superagent.del('http://localhost:8080/api/customer/')
+        superagent.del('http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080')
             .set("User-Agent", "agent")
             .set("Content-Type", "application/json")
             .end(done)
     }));
     it('it should get the page', async () => {
-        await browser.get('http://host.docker.internal:8080');
+        await browser.get('http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080');
         expect(await browser.getTitle()).to.equal('Atsea Shop');
     });
 
