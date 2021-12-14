@@ -6,7 +6,7 @@ describe('Products', () => {
   const chai1 = require('chai');
   const expect = chai1.expect;
   it('Getting all products', async () => {
-    const response = await agent.get('http://localhost:8080/api/product/')
+    const response = await agent.get('http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/product/')
       .set('Content-type', 'application/json')
       .set('Accept', 'application/json');
     expect(response.status).to.equal(StatusCodes.OK);
@@ -14,7 +14,7 @@ describe('Products', () => {
 
   it('Getting single product by ID', async () => {
     const id = 1;
-    const response = await agent.get('http://localhost:8080/api/product/' + id)
+    const response = await agent.get('http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/product/' + id)
       .set('Content-type', 'application/json')
       .set('Accept', 'application/json');
     expect(response.status).to.equal(StatusCodes.OK);

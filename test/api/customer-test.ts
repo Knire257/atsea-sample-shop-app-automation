@@ -6,7 +6,7 @@ describe("Customer tests", () => {
   let customerTestId;
   let customerName;
   it("Create customer", async () => {
-    const response = await agent.post("http://localhost:8080/api/customer/")
+    const response = await agent.post("http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/customer/")
       .send({
         customerId: 0,
         name: "Sally Vallery",
@@ -29,7 +29,7 @@ describe("Customer tests", () => {
 
   it("Get customer by Id", async () => {
     const id = customerTestId;
-    const response = await agent.get("http://localhost:8080/api/customer/" + id)
+    const response = await agent.get("http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/customer/" + id)
       .set("Content-type", "application/json")
       .set("Accept", "application/json");
     chai1.expect(response.status).to.equal(StatusCodes.OK);
@@ -41,7 +41,7 @@ describe("Customer tests", () => {
   it("Get customer by name", async () => {
     it("A costumer must be show", async () => {
       const response = await agent.get(
-        "http://localhost:8080/api/customer/username=" + customerName
+        "http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/customer/username=" + customerName
       )
         .set("User-Agent", "agent") 
         .set("Content-Type", "application/json")
@@ -55,7 +55,7 @@ describe("Customer tests", () => {
   it("Get Customer by Username", async () => {
     const username = "sallyv"; 
     const response = await agent.get(
-      "http://localhost:8080/api/customer/username=" + username
+      "http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/customer/username=" + username
     )
       .set("Content-type", "application/json")
       .set("Accept", "application/json");
@@ -79,7 +79,7 @@ describe("Customer tests", () => {
       };
 
       const response = await agent.put(
-        "http://localhost:8080/api/customer/" + customerTestId
+        "http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/customer/" + customerTestId
       )
         .set("Content-type", "application/json")
         .set("Accept", "application/json")
@@ -96,14 +96,14 @@ describe("Customer tests", () => {
 
   it("Delete customer by Id", async () => {
     const id = customerTestId; 
-    const response = await agent.del("http://localhost:8080/api/customer/" + id) 
+    const response = await agent.del("http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/customer/" + id) 
       .set("Content-type", "application/json")
       .set("Accept", "application/json");
     chai1.expect(response.status).to.equal(StatusCodes.NO_CONTENT);
   });
 
   it("Delete all customers in system", async () => {
-    const response = await agent.del(`http://localhost:8080/api/customer/`)
+    const response = await agent.del(`http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/customer/`)
       .set("User-Agent", "agent")
       .set("Content-Type", "application/json");
     chai1.expect(response.status).to.equal(StatusCodes.NO_CONTENT);
