@@ -38,7 +38,7 @@ export const config: Config = {
     },
     mochaOpts: {
         reporter: 'mochawesome-screenshots',
-        timeout: 60000,    //Antes era 60000, toca probar a ver si da
+        timeout: 60000,
     },
     multiCapabilities: [chromeConfig, firefoxConfig]
 };
