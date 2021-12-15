@@ -9,7 +9,7 @@ describe("Order Tests", () => {
   let orderTestId = 0;
   it("Create an order", async () => {
     const response = await
-      agent.post("http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/order/")
+      agent.post("http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/api/order/")
         .send({
           orderId: 1,
           orderDate: "2017-02-28T19:52:39Z",
@@ -25,7 +25,7 @@ describe("Order Tests", () => {
 
   it("Get all orders", async () => {
     const response = await
-      agent.get("http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/order/")
+      agent.get("http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/api/order/")
         .set("Content-type", "application/json")
         .set("Accept", "application/json");
     expect(response.status).to.equal(StatusCodes.OK);
@@ -35,7 +35,7 @@ describe("Order Tests", () => {
   it("Get order by Id", async () => {
     const id = orderTestId;
     const response = await
-      agent.get("http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/order/" + id)
+      agent.get("http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/api/order/" + id)
         .set("Content-type", "application/json")
         .set("Accept", "application/json");
     expect(response.status).to.equal(StatusCodes.OK);
@@ -54,7 +54,7 @@ describe("Order Tests", () => {
       };
 
       const response = await agent.put(
-        "http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/order/ " + order.orderId
+        "http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/api/order/ " + order.orderId
       )
         .set("Content-type", "application/json")
         .set("Accept", "application/json")
@@ -70,7 +70,7 @@ describe("Order Tests", () => {
   it("Delete order by Id", async () => {
     const id = orderTestId;
     const response = await
-      agent.del("http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/order/" + id)
+      agent.del("http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/api/order/" + id)
         .set("Content-type", "application/json")
         .set("Accept", "application/json");
     expect(response.status).to.equal(StatusCodes.NO_CONTENT);
