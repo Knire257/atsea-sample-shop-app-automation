@@ -8,7 +8,7 @@ describe("Login And Purchase", () => {
   //let customerTestId;
   //let customerName;
   it("Create customer", async () => {
-    const response = await agent.post("http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/customer/")
+    const response = await agent.post("http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/")
       .send({
         customerId: 1,
         name: "Sally Vallery",
@@ -32,7 +32,7 @@ describe("Login And Purchase", () => {
   let token;
   it("Login", async () => {
     const response = await
-      agent.post(`http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/login/`)
+      agent.post(`http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/login/`)
         .set("Content-Type", "application/json")
         .set("Accept", "application/json")
         .send({
@@ -45,7 +45,7 @@ describe("Login And Purchase", () => {
 
   it("Purchase", async () => {
     const response = await
-      agent.get("http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/purchase/")
+      agent.get("http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/purchase/")
         .set("Content-type", "application/json")
         .set("Accept", "application/json")
         .set("Authorization", `Bearer ${token}`);
@@ -55,7 +55,7 @@ describe("Login And Purchase", () => {
 
   it("Delete all customers in system", async () => {
     const response = await
-      agent.del(`http://ec2-3-144-243-225.us-east-2.compute.amazonaws.com:8080/api/customer/`)
+      agent.del(`http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/api/customer/`)
         .set("User-Agent", "agent")
         .set("Content-Type", "application/json");
     expect(response.status).to.equal(StatusCodes.NO_CONTENT);
