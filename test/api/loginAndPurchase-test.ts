@@ -8,7 +8,7 @@ describe("Login And Purchase", () => {
   //let customerTestId;
   //let customerName;
   it("Create customer", async () => {
-    const response = await agent.post("http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/")
+    const response = await agent.post("http://ec2-13-58-210-183.us-east-2.compute.amazonaws.com:8080/api/customer/")
       .send({
         customerId: 1,
         name: "Sally Vallery",
